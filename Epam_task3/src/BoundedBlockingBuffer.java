@@ -1,6 +1,5 @@
 public class BoundedBlockingBuffer<T>{
     private T data;
-    private boolean isTaken = false;
     private boolean isPut = false;
 
     public T take() throws InterruptedException {

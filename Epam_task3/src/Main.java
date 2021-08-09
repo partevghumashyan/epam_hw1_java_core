@@ -3,25 +3,19 @@ public class Main {
         BoundedBlockingBuffer<String> boundedBlockingBuffer = new BoundedBlockingBuffer<>();
         String s = "Armenia";
 
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    boundedBlockingBuffer.put(s);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        Thread thread1 = new Thread(() -> {
+            try {
+                boundedBlockingBuffer.put(s);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
 
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    boundedBlockingBuffer.take();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        Thread thread2 = new Thread(() -> {
+            try {
+                boundedBlockingBuffer.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
 
@@ -30,6 +24,7 @@ public class Main {
 
         thread1.join();
         thread2.join();
+
 
 
     }
